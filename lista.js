@@ -13,14 +13,16 @@ function CriarBotaoDelete(){
     return botao_delete
 }
 function EditItem(){
-    const item = this.parentElement
-    const edit =
-    document.createElement("input")
-    item.innerHTML =
-    item.appendChild(edit)
-    item.appendChild_botaodelete()
-    item.appendChild_botaoedit()
-    edit.select()
+    item_lista = this.parentElement
+    texto_item_lista  = item_lista.innerText.replace("DeleteEdit", "")
+    input_element = document.querySelector('[data-form-input]')
+    input_element.value = texto_item_lista
+    
+    const botao_submit = document.querySelector('[button-submit]')
+    botao_submit.className = 'd-none'
+
+    const button_edit = document.querySelector('[button-edit]')
+    button_edit.classList.remove('d-none')
 }
 
 function CriarBotaoEdit(){
@@ -49,6 +51,24 @@ function Submit(){
     lista.appendChild (novo_item_lista)
 
     document.getElementById("item").value = ""
+}
+function Edit(){
+    
+    texto_adicionado = input_element.value
+    item_lista.innerHTML = texto_adicionado
+
+    item_lista.appendChild(CriarBotaoDelete())
+    item_lista.appendChild(CriarBotaoEdit())
+
+    const botao_submit = document.querySelector('[button-submit]')
+    botao_submit.classList.remove('d-none')
+    botao_submit.classList.add('btn', 'btn-dark')
+
+    const button_edit = document.querySelector('[button-edit]')
+    button_edit.classList.add('d-none')
+
+    input_element.value = '';
+
 }
 
 
